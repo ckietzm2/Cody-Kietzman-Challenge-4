@@ -28,8 +28,14 @@ var questions = [
         question: "The condition in an if / else statement is enclosed within ____.",
         choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
         answer: "parentheses",
+    },
+    {
+        question: "The condition in an if / else statement is enclosed within ____.",
+        choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
+        answer: "parentheses",
     }
 ]
+
 
 
 startBtn.addEventListener("click", function () {
@@ -46,27 +52,28 @@ startBtn.addEventListener("click", function () {
         }
 
     }, 1000)
-    startQuiz()
+
 });
 
 function startQuiz() {
 
     console.log(questions.length);
     console.log(questionNumber)
+    console.log(userChoice)
     option5.textContent = questions[questionNumber].question
     answerBtn1.textContent = questions[questionNumber].choices[0]
     answerBtn2.textContent = questions[questionNumber].choices[1]
     answerBtn3.textContent = questions[questionNumber].choices[2]
     answerBtn4.textContent = questions[questionNumber].choices[3]  
 
-    buttonChoice()
+    
 }
     
 
 function buttonChoice() {
 
-answerBtn1.addEventListener("click", function(event) {
-var userChoice = event.target
+answerBtn1.addEventListener("click", function() {
+
 userChoice = answerBtn1.textContent
 if (userChoice===questions[questionNumber].answer) {
     alert("Correct!")
@@ -76,11 +83,13 @@ else {
     alert("Incorrect")
     
 }
+userChoice = ""
+questionNumber=questionNumber+1
 endGame()
 })
 
-answerBtn2.addEventListener("click", function(event) {
-    var userChoice = event.target
+answerBtn2.addEventListener("click", function() {
+    
     userChoice = answerBtn2.textContent
     if (userChoice===questions[questionNumber].answer) {
         alert("Correct!")
@@ -90,12 +99,14 @@ answerBtn2.addEventListener("click", function(event) {
         alert("Incorrect")
         
     }
+    userChoice = ""
+    questionNumber=questionNumber+1
     endGame()
     
     })
 
-answerBtn3.addEventListener("click", function(event) {
-        var userChoice = event.target
+answerBtn3.addEventListener("click", function() {
+        
         userChoice = answerBtn3.textContent
         if (userChoice===questions[questionNumber].answer) {
             alert("Correct!")
@@ -105,12 +116,14 @@ answerBtn3.addEventListener("click", function(event) {
             alert("Incorrect")
             
         }
+        userChoice = ""
+        questionNumber=questionNumber+1
         endGame()
         
         })
 
-answerBtn4.addEventListener("click", function(event) {
-            var userChoice = event.target
+answerBtn4.addEventListener("click", function() {
+            
             userChoice = answerBtn4.textContent
             if (userChoice===questions[questionNumber].answer) {
                 alert("Correct!")
@@ -120,7 +133,9 @@ answerBtn4.addEventListener("click", function(event) {
                 alert("Incorrect")
                
             }
-           endGame()
+            userChoice = ""
+            questionNumber=questionNumber+1
+            endGame()
             
             })
         
@@ -129,13 +144,16 @@ answerBtn4.addEventListener("click", function(event) {
 
 function endGame() {
 
-    if (questionNumber>questions.length-1) {
-          
-        alert("Game Over")
+    if  (questionNumber<=questions.length-1){
+        startQuiz()
+                         
     }
-        else if (questionNumber<=questions.length-1){
-        questionNumber=questionNumber+1
+        else if (questionNumber>questions.length-1){
+        alert("Game Over")
         
         }
-    startQuiz()
+
     }
+
+    startQuiz()
+    buttonChoice()
