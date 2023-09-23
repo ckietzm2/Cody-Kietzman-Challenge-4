@@ -6,6 +6,8 @@ var answerBtn4 = document.querySelector("#answer4");
 var timerNav = document.querySelector("#timer");
 var timerSec = 5
 var option5 = document.querySelector("#option5");
+var userChoice = ""
+var questionNumber = 0
 var questions = [
     {
         question: "What does HTML stand for?",
@@ -21,13 +23,18 @@ var questions = [
         question: "The condition in an if / else statement is enclosed within ____.",
         choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
         answer: "parentheses",
+    },
+    {
+        question: "The condition in an if / else statement is enclosed within ____.",
+        choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
+        answer: "parentheses",
     }
 ]
 
 
 startBtn.addEventListener("click", function () {
     
-    option5.textContent = questions[1].question
+
     var timer = setInterval(function () {
         if (timerSec > 0) {
             timerSec--;
@@ -39,5 +46,96 @@ startBtn.addEventListener("click", function () {
         }
 
     }, 1000)
+    startQuiz()
 });
 
+function startQuiz() {
+
+    console.log(questions.length);
+    console.log(questionNumber)
+    option5.textContent = questions[questionNumber].question
+    answerBtn1.textContent = questions[questionNumber].choices[0]
+    answerBtn2.textContent = questions[questionNumber].choices[1]
+    answerBtn3.textContent = questions[questionNumber].choices[2]
+    answerBtn4.textContent = questions[questionNumber].choices[3]  
+
+    buttonChoice()
+}
+    
+
+function buttonChoice() {
+
+answerBtn1.addEventListener("click", function(event) {
+var userChoice = event.target
+userChoice = answerBtn1.textContent
+if (userChoice===questions[questionNumber].answer) {
+    alert("Correct!")
+    
+}
+else {
+    alert("Incorrect")
+    
+}
+endGame()
+})
+
+answerBtn2.addEventListener("click", function(event) {
+    var userChoice = event.target
+    userChoice = answerBtn2.textContent
+    if (userChoice===questions[questionNumber].answer) {
+        alert("Correct!")
+        
+    }
+    else {
+        alert("Incorrect")
+        
+    }
+    endGame()
+    
+    })
+
+answerBtn3.addEventListener("click", function(event) {
+        var userChoice = event.target
+        userChoice = answerBtn3.textContent
+        if (userChoice===questions[questionNumber].answer) {
+            alert("Correct!")
+            
+        }
+        else {
+            alert("Incorrect")
+            
+        }
+        endGame()
+        
+        })
+
+answerBtn4.addEventListener("click", function(event) {
+            var userChoice = event.target
+            userChoice = answerBtn4.textContent
+            if (userChoice===questions[questionNumber].answer) {
+                alert("Correct!")
+                
+            }
+            else {
+                alert("Incorrect")
+               
+            }
+           endGame()
+            
+            })
+        
+   
+}
+
+function endGame() {
+
+    if (questionNumber>questions.length-1) {
+          
+        alert("Game Over")
+    }
+        else if (questionNumber<=questions.length-1){
+        questionNumber=questionNumber+1
+        
+        }
+    startQuiz()
+    }
