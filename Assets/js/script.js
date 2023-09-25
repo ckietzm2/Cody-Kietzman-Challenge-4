@@ -4,35 +4,42 @@ var answerBtn2 = document.querySelector("#answer2");
 var answerBtn3 = document.querySelector("#answer3");
 var answerBtn4 = document.querySelector("#answer4");
 var timerNav = document.querySelector("#timer");
-var timerSec = 5
+var questionArea = document.querySelector("#question_area")
+var timerSec = 60
 var option5 = document.querySelector("#option5");
 var userChoice = ""
 var questionNumber = 0
+var score = 0
+var checkBtn = false
+
+
+
+
 var questions = [
     {
         question: "What does HTML stand for?",
-        choices: ["Hyper text markup language", "Hyper text martian language", "answer 3", "Answer 4"],
-        answer: "Hyper text markup language",
+        choices: ["Hyper Text Markup Language", "Hyper Text Martian Language", "Hippo Tries Martial Arts", "Hyper Text Make Up Language"],
+        answer: "Hyper Text Markup Language",
     },
     {
         question: "Commonly used data types DO NOT include",
-        choices: ["Strings", "booleans", "alerts", "numbers"],
-        answer: "alerts",
+        choices: ["Strings", "Booleans", "Alerts", "Numbers"],
+        answer: "Alerts",
     },
     {
         question: "The condition in an if / else statement is enclosed within ____.",
-        choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-        answer: "parentheses",
+        choices: ["Quotes", "Curly Brackets", "Parentheses", "Square Brackets"],
+        answer: "Parentheses",
     },
     {
-        question: "The condition in an if / else statement is enclosed within ____.",
-        choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-        answer: "parentheses",
+        question: "How many items can an array hold?",
+        choices: ["5 or less", "Up to 10", "Up to 15", "Infinite"],
+        answer: "Infinite",
     },
     {
-        question: "The condition in an if / else statement is enclosed within ____.",
-        choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-        answer: "parentheses",
+        question: "What function do you use to create a timer?",
+        choices: ["Set Timer", "Set Interval", "Go Time Go", "Set Time"],
+        answer: "Set Interval",
     }
 ]
 
@@ -40,14 +47,15 @@ var questions = [
 
 startBtn.addEventListener("click", function () {
     
-
+    checkBtn = true
     var timer = setInterval(function () {
         if (timerSec > 0) {
             timerSec--;
             timerNav.textContent = "Time: " + timerSec;
+            startQuiz()
         } else {
             clearInterval(timer)
-            //alert("Game Over")
+            endGame()
             
         }
 
@@ -56,18 +64,26 @@ startBtn.addEventListener("click", function () {
 });
 
 function startQuiz() {
+  
+   if (checkBtn===false) {
 
-    console.log(questions.length);
-    console.log(questionNumber)
-    console.log(userChoice)
+    option5.textContent = ""
+  
+    
+   }
+   else if (checkBtn===true) {
+    
+    questionArea.removeAttribute('class')
     option5.textContent = questions[questionNumber].question
+
     answerBtn1.textContent = questions[questionNumber].choices[0]
     answerBtn2.textContent = questions[questionNumber].choices[1]
     answerBtn3.textContent = questions[questionNumber].choices[2]
-    answerBtn4.textContent = questions[questionNumber].choices[3]  
+    answerBtn4.textContent = questions[questionNumber].choices[3] 
 
-    
-}
+   }
+    }
+
     
 
 function buttonChoice() {
@@ -81,6 +97,7 @@ if (userChoice===questions[questionNumber].answer) {
 }
 else {
     alert("Incorrect")
+    timerSec = timerSec - 10
     
 }
 userChoice = ""
@@ -97,7 +114,7 @@ answerBtn2.addEventListener("click", function() {
     }
     else {
         alert("Incorrect")
-        
+        timerSec = timerSec - 10
     }
     userChoice = ""
     questionNumber=questionNumber+1
@@ -114,7 +131,7 @@ answerBtn3.addEventListener("click", function() {
         }
         else {
             alert("Incorrect")
-            
+            timerSec = timerSec - 10
         }
         userChoice = ""
         questionNumber=questionNumber+1
@@ -131,7 +148,7 @@ answerBtn4.addEventListener("click", function() {
             }
             else {
                 alert("Incorrect")
-               
+                timerSec = timerSec - 10
             }
             userChoice = ""
             questionNumber=questionNumber+1
@@ -150,10 +167,10 @@ function endGame() {
     }
         else if (questionNumber>questions.length-1){
         alert("Game Over")
+        score = score + timerSec
         
+        window.location.href = "highscores.html"
         }
-
     }
-
     startQuiz()
     buttonChoice()
