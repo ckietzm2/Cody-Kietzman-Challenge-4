@@ -5,6 +5,8 @@ var answerBtn3 = document.querySelector("#answer3");
 var answerBtn4 = document.querySelector("#answer4");
 var timerNav = document.querySelector("#timer");
 var questionArea = document.querySelector("#question_area")
+var endScreen = document.querySelector("#end-screen")
+var finalScore = document.querySelector("#final-score")
 var timerSec = 60
 var option5 = document.querySelector("#option5");
 var userChoice = ""
@@ -46,14 +48,17 @@ var questions = [
 
 
 startBtn.addEventListener("click", function () {
-    
-    checkBtn = true
+    timerNav.removeAttribute('class')
+    questionArea.removeAttribute('class')
     var timer = setInterval(function () {
-        if (timerSec > 0) {
+        if (timerSec > 0 && questionNumber<=questions.length-1)  {
             timerSec--;
             timerNav.textContent = "Time: " + timerSec;
             startQuiz()
-        } else {
+        } 
+
+        if (timerSec > 0 && questionNumber>questions.length-1)  {
+            timerSec=timerSec+0
             clearInterval(timer)
             endGame()
             
@@ -65,15 +70,12 @@ startBtn.addEventListener("click", function () {
 
 function startQuiz() {
   
-   if (checkBtn===false) {
+    if (questionNumber>questions.length-1 || timerSec<=0){
+        endGame()
+    }
 
-    option5.textContent = ""
-  
-    
-   }
-   else if (checkBtn===true) {
-    
-    questionArea.removeAttribute('class')
+    else {
+
     option5.textContent = questions[questionNumber].question
 
     answerBtn1.textContent = questions[questionNumber].choices[0]
@@ -82,8 +84,7 @@ function startQuiz() {
     answerBtn4.textContent = questions[questionNumber].choices[3] 
 
    }
-    }
-
+}
     
 
 function buttonChoice() {
@@ -101,8 +102,8 @@ else {
     
 }
 userChoice = ""
-questionNumber=questionNumber+1
 endGame()
+
 })
 
 answerBtn2.addEventListener("click", function() {
@@ -117,8 +118,8 @@ answerBtn2.addEventListener("click", function() {
         timerSec = timerSec - 10
     }
     userChoice = ""
-    questionNumber=questionNumber+1
     endGame()
+    
     
     })
 
@@ -134,8 +135,8 @@ answerBtn3.addEventListener("click", function() {
             timerSec = timerSec - 10
         }
         userChoice = ""
-        questionNumber=questionNumber+1
         endGame()
+      
         
         })
 
@@ -151,8 +152,8 @@ answerBtn4.addEventListener("click", function() {
                 timerSec = timerSec - 10
             }
             userChoice = ""
-            questionNumber=questionNumber+1
             endGame()
+            
             
             })
         
@@ -161,16 +162,30 @@ answerBtn4.addEventListener("click", function() {
 
 function endGame() {
 
-    if  (questionNumber<=questions.length-1){
+    if  (questionNumber<=questions.length-1 && timerSec>0){
+        questionNumber=questionNumber+1
         startQuiz()
                          
     }
-        else if (questionNumber>questions.length-1){
-        alert("Game Over")
-        score = score + timerSec
+        else if (questionNumber>questions.length-1 || timerSec<=0){
         
-        window.location.href = "highscores.html"
+        
+        
+        
+        questionArea.setAttribute('class','hide')
+        clearInterval(timer)
+        clearInterval(timerSec)
+        finalEndGame()
         }
     }
+
+function finalEndGame() {
+endScreen.removeAttribute('class')
+finalScore.textContent=timerSec
+timerNav.setAttribute('class','hide')
+
+}
+
+
     startQuiz()
     buttonChoice()

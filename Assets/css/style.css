@@ -1,42 +1,39 @@
-
-
-
 p a {
 
-font-size: 200%;
-color: indigo;
-text-decoration: none;
-
-}
-
-#timer {
-
-font-size: 200%;
-color: magenta;
-
-}
-
-#option5 {
-color: indigo;
-text-wrap: wrap;
-margin-left: 20vw;
-margin-right: 20vw;
-;
-}
-
-#answer1,#answer2,#answer3,#answer4 {
-display: flex;
-justify-content: center;
-background-color: aqua;
-padding: 5px;
-margin: 10px 0px;
-margin-left: 20vw;
-
-}
-
-
-.hide {
-display: none;
-
-
-}
+    font-size: 200%;
+    color: indigo;
+    text-decoration: none;
+    
+    }
+    
+    #timer {
+    
+    font-size: 200%;
+    color: magenta;
+    
+    }
+    
+    #option5 {
+    color: indigo;
+    text-wrap: wrap;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    ;
+    }
+    
+    #answer1,#answer2,#answer3,#answer4 {
+    display: flex;
+    justify-content: center;
+    background-color: aqua;
+    padding: 5px;
+    margin: 10px 0px;
+    margin-left: 20vw;
+    
+    }
+    
+    
+    .hide {
+    display: none;
+    
+    
+    }
