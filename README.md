@@ -7,5 +7,6 @@ https://ckietzm2.github.io/Cody-Kietzman-Quiz-Challenge/
 
 https://github.com/ckietzm2/Cody-Kietzman-Quiz-Challenge
 
+![Screenshot 2023-09-26 152057](https://github.com/ckietzm2/Cody-Kietzman-Quiz-Challenge/assets/143734933/1def3e1c-4548-4b95-a975-bad94cb425bb)
 
 
