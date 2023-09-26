@@ -6,7 +6,7 @@ var answerBtn4 = document.querySelector("#answer4");
 var timerNav = document.querySelector("#timer");
 var questionArea = document.querySelector("#question_area")
 var endScreen = document.querySelector("#end-screen")
-var finalScore = document.querySelector("#finalScore")
+var finalScore = document.querySelector("#final-score")
 var timerSec = 60
 var option5 = document.querySelector("#option5");
 var userChoice = ""
@@ -15,7 +15,10 @@ var score = 0
 var initialsInput = document.querySelector("#initials")
 var submit = document.querySelector("#submit")
 var initials = ""
+var hiScores = []
 var finalArray = []
+var finalArray2 = document.querySelector("#final-array")
+var finalScore2 = document.querySelector("#final-score2")
 
 
 // Created an object of an array of questions, choices and the correct answer
@@ -189,7 +192,7 @@ function endGame() {
 // Hides question area and shows end screen where initials are inputted
 function finalEndGame() {
     endScreen.removeAttribute('class')
-
+    finalScore.textContent="Your final score is " + timerSec
     timerNav.setAttribute('class', 'hide')
     submit.addEventListener("click", function () {
         initials = initialsInput.value
@@ -198,32 +201,23 @@ function finalEndGame() {
         localStorage.setItem("initials", JSON.stringify(initials));
         localStorage.setItem("timerSec", JSON.stringify(timerSec));
        
-        var hiScores = {
-            
-            initials: JSON.parse(localStorage.getItem("initials")) || [],
-            score:  JSON.parse(localStorage.getItem("timerSec")) || []
-
-       
-        };
+        var hiScores = [JSON.parse(localStorage.getItem("initials")),JSON.parse(localStorage.getItem("timerSec"))]
+        
+    
 
 
         
-        finalArray.push(hiScores)
-        console.log(finalArray)
+       
+       finalScore2.textcontent="Great Job " + initials + "!  Your score is " + timerSec
+    
+
+
      
     })
 }
-function highScores() {
 
-
-
-
-    window.location.href = "file:///C:/Users/ckiet/OneDrive/desktop/Challenges/Cody-Kietzman-Challenge-4/highscores.html"
-}
 
 
 
 startQuiz()
 buttonChoice()
-
-
